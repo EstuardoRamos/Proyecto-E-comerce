@@ -20,8 +20,8 @@ app.get('/usuarios', (req, res) => {
 // POST /usuarios
 app.post('/new-user', (req, res) => {
   const newUser = req.body;
-
-  connection.query('INSERT INTO users SET ?', newUser, (error, results) => {
+  
+  connection.query('INSERT INTO usuario (nombre, username, password, dinero_real, moneda_virtual, rol, estado) VALUES (?, ?, ?, ?, ?, ?, ?)', [newUser.nombre, newUser.username, newUser.password, newUser.dinero_real, newUser.moneda_virtual, newUser.rol, newUser.estado], (error, results) => {
     if (error) {
       console.error('Error al insertar nuevo usuario:', error);
       res.status(500).json({ error: 'Error interno del servidor' });
@@ -30,6 +30,7 @@ app.post('/new-user', (req, res) => {
       res.status(201).json({ message: 'Usuario creado exitosamente' });
     }
   });
+  
 });
 
 // ...
