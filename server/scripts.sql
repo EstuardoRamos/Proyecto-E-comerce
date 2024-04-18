@@ -53,6 +53,15 @@ CREATE TABLE chat (
   FOREIGN KEY (idvendedor) REFERENCES usuario(id)
 );
 
+CREATE TABLE imagen_producto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  imagen VARCHAR(255) NOT NULL,
+  idvendedor INT,
+  idproducto  INT,
+  FOREIGN KEY (idproducto) REFERENCES producto(id),
+  FOREIGN KEY (idvendedor) REFERENCES usuario(id)
+);
+
 
 ---insert
 INSERT INTO usuario (nombre, username, password, dinero_real, moneda_virtual, rol, estado)
